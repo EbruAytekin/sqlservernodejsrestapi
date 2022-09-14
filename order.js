@@ -1,10 +1,11 @@
 class Order{
-    constructor(Id,Title,Quantity,Message,City){
+    constructor(Id,Durum,Adi,Kodu,FirmaId, YetkiliAdi){
         this.Id = Id; 
-        this.Title = Title; 
-        this.Quantity = Quantity;
-        this.Message = Message;
-        this.City = City; 
+        this.Durum = Durum; 
+        this.Adi = Adi;
+        this.Kodu = Kodu;
+        this.FirmaId = FirmaId; 
+        this.YetkiliAdi = YetkiliAdi; 
     }
 }
 

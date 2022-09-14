@@ -5,7 +5,7 @@ const sql = require('mssql');
 async function getOrders() {
     try {
         let pool = await sql.connect(config);
-        let products = await pool.request().query("SELECT * from Orders");
+        let products = await pool.request().query("SELECT * from Bolgeler");
         return products.recordsets;
     }
     catch (error) {
@@ -18,7 +18,7 @@ async function getOrder(orderId) {
         let pool = await sql.connect(config);
         let product = await pool.request()
             .input('input_parameter', sql.Int, orderId)
-            .query("SELECT * from Orders where Id = @input_parameter");
+            .query("SELECT * from Bolgeler where Id = @input_parameter");
         return product.recordsets;
 
     }
@@ -34,10 +34,11 @@ async function addOrder(order) {
         let pool = await sql.connect(config);
         let insertProduct = await pool.request()
             .input('Id', sql.Int, order.Id)
-            .input('Title', sql.NVarChar, order.Title)
-            .input('Quantity', sql.Int, order.Quantity)
-            .input('Message', sql.NVarChar, order.Message)
-            .input('City', sql.NVarChar, order.City)
+            .input('Durum', sql.NVarChar, order.Durum)
+            .input('Adi', sql.Int, order.Adi)
+            .input('Kodu', sql.NVarChar, order.Kodu)
+            .input('FirmaId', sql.Int, order.FirmaId)
+            .input("YetkiliAdi", sql.NVarChar, order.YetkiliAdi)
             .execute('InsertOrders');
         return insertProduct.recordsets;
     }
